@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Login Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <style>
+            body {
+                background: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+                background-size: 400% 400%;
+                animation: gradient 15s ease infinite;
+                height: 100vh;
+            }
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+            #square{
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 500px;
+                width: 500px;
+                border-radius: 20%;
+                background-color: #ffff;
+            }
+            .center{
+                text-align:center;
+            }
+            #usernameSpace{
+                margin-top: 20%;
+            }
+            #passwordSpacing{
+                margin-top:10%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="square">
+            <h1 class="center">Login</h1>
+            <form class="center">
+                <div id="usernameSpace">
+                <div class="form-group">
+                  <label for="inputUsername">Username</label>
+                  <input type="email" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Username">
+                </div>
+                </div>
+                <div id="passwordSpacing">
+                <div class="form-group">
+                  <label for="inputPassword">Password</label>
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
+                </div>
+                <button type="submit" class="btn btn-primary", center>Submit</button>
+              </form>
+        </div>
+    </body>
+</html>
