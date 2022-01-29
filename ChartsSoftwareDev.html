@@ -1,25 +1,63 @@
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <title>Team Charts</title>
         <style>
-            .chart{
+            #foul{
                 position:relative;
                 width:20vw;
                 height:20vh;
+                left: 10%;
+            }
+            #Win{
+                position:relative;
+                width:20vw;
+                height:20vh;
+                top:-23%;
+                left: 60%;
+            }
+            body {
+                background: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+                background-size: 400% 400%;
+                animation: gradient 15s ease infinite;
+                height: 100vh;
+            }
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+            #square{
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 650px;
+                width: 1200px;
+                border-radius: 20%;
+                background-color: #ffff;
             }
         </style>
     </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<div class="chart">
-    <canvas id="fouls" width="100" height="200"></canvas>
-</div>
-<div class="chart">
-    <canvas id="Wins" width="100" height="200"></canvas>
+<div id="square">
+    <div id="foul">
+        <canvas id="Wins" width="100" height="200"></canvas>
+    </div>
+    <div id="Win">
+        <canvas id="fouls" width="100" height="200"></canvas>
+    </div>
 </div>
 <script>
-const ctx = document.getElementById('fouls').getContext('2d');
+const ctx = document.getElementById('Wins').getContext('2d');
     let gradient=ctx.createLinearGradient(0,0,0,400);
     gradient.addColorStop(1,"#f46c1b")
     gradient.addColorStop(.8,"#1c4494")
@@ -28,10 +66,36 @@ const ctx = document.getElementById('fouls').getContext('2d');
     data: {
         labels: ['4639', '8567', '254', '420', '5427', '118'],
         datasets: [{
-            label: 'Number of Fouls',
-            data: [5, 4, 3, 2, 5, 6],
+            label: 'Number of Wins',
+            data: [7, 4, 3, 2, 5, 6],
             backgroundColor: [
                gradient,
+                '#06f000',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ]
+        }]
+    },
+    options: {
+        responsive: true,
+    }
+});
+
+const gtx = document.getElementById('fouls').getContext('2d');
+    let grad=gtx.createLinearGradient(0,0,0,400);
+    grad.addColorStop(1,"#f46c1b")
+    grad.addColorStop(.8,"#1c4494")
+    const chart = new Chart(gtx, {
+    type: 'bar',
+    data: {
+        labels: ['4639', '8567', '254', '420', '5427', '118'],
+        datasets: [{
+            label: 'Number of Fouls',
+            data: [7, 9, 5, 4 , 3, 2],
+            backgroundColor: [
+            grad,
                 '#06f000',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
