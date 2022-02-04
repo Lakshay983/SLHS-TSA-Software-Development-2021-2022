@@ -71,6 +71,17 @@
     <button class="btn" style="width:100%"><i class="fa fa-download"></i> Download</button>
     </a>
 <script>
+    dataString='';
+     try{
+        var spawn=require('child_process').spawn; 
+        const childPython = spawn('python', ['DataGrabber.py']);
+        childPython.stdout.on('data', (data)=>
+        {
+            alert(data);
+            dataString+=data;
+        });
+        
+     }catch(err){alert(err);}
     teamLabel=['4639', '8567', '254', '420', '5427', '118'];
     winData = [7, 4, 3, 2, 5, 6];
     foulData = [7, 9, 5, 4 , 3, 2];
