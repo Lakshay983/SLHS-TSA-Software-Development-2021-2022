@@ -73,22 +73,27 @@
 <script>
     dataString='';
      try{
+         numberLabels=[];
         var spawn=require('child_process').spawn; 
         const childPython = spawn('python', ['DataGrabber.py']);
         childPython.stdout.on('data', (data)=>
         {
-            alert(data);
-            dataString+=data;
-        });
-        
-     }catch(err){alert(err);}
-    teamLabel=['4639', '8567', '254', '420', '5427', '118'];
-    winData = [7, 4, 3, 2, 5, 6];
-    foulData = [7, 9, 5, 4 , 3, 2];
-const ctx = document.getElementById('Wins').getContext('2d');
+            dataString+=(data.toString());
+            var lines=dataString.split("\n");
+            for(var i=0;i<lines.length-1;i++)
+            {
+                var parseString=lines[i].split(" ");
+                numberLabels.push(parseString[0]);
+            }
+        });   
+    teamLabel = ['4639', '624', '5427'];
+    winData = [7, 4, 3];
+    foulData = [7, 9, 5];
+    const ctx = document.getElementById('Wins').getContext('2d');
     let gradient=ctx.createLinearGradient(0,0,0,400);
-    gradient.addColorStop(1,"#f46c1b")
-    gradient.addColorStop(.8,"#1c4494")
+    gradient.addColorStop(1,"#f46c1b");
+    gradient.addColorStop(.8,"#1c4494");
+    colors = [gradient,'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)' ];
     const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -96,14 +101,7 @@ const ctx = document.getElementById('Wins').getContext('2d');
         datasets: [{
             label: 'Number of Wins',
             data: winData,
-            backgroundColor: [
-               gradient,
-                '#06f000',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ]
+            backgroundColor: colors
         }]
     },
     options: {
@@ -136,6 +134,7 @@ const gtx = document.getElementById('fouls').getContext('2d');
         responsive: true,
     }
 });
+}catch(err){alert(err);}
 </script>
 </body>
 </html>
