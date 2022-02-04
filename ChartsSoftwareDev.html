@@ -4,6 +4,17 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <title>Team Charts</title>
         <style>
+            .btn {
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            cursor: pointer;
+            font-size: 20px;
+            }
+            .btn:hover {
+            background-color: RoyalBlue;
+            }
             #foul{
                 position:relative;
                 width:20vw;
@@ -56,7 +67,13 @@
         <canvas id="fouls" width="100" height="200"></canvas>
     </div>
 </div>
+    <a href="TeamData.CSV">
+    <button class="btn" style="width:100%"><i class="fa fa-download"></i> Download</button>
+    </a>
 <script>
+    teamLabel=['4639', '8567', '254', '420', '5427', '118'];
+    winData = [7, 4, 3, 2, 5, 6];
+    foulData = [7, 9, 5, 4 , 3, 2];
 const ctx = document.getElementById('Wins').getContext('2d');
     let gradient=ctx.createLinearGradient(0,0,0,400);
     gradient.addColorStop(1,"#f46c1b")
@@ -64,10 +81,10 @@ const ctx = document.getElementById('Wins').getContext('2d');
     const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['4639', '8567', '254', '420', '5427', '118'],
+        labels: teamLabel,
         datasets: [{
             label: 'Number of Wins',
-            data: [7, 4, 3, 2, 5, 6],
+            data: winData,
             backgroundColor: [
                gradient,
                 '#06f000',
@@ -90,7 +107,7 @@ const gtx = document.getElementById('fouls').getContext('2d');
     const chart = new Chart(gtx, {
     type: 'bar',
     data: {
-        labels: ['4639', '8567', '254', '420', '5427', '118'],
+        labels: teamLabel,
         datasets: [{
             label: 'Number of Fouls',
             data: [7, 9, 5, 4 , 3, 2],
